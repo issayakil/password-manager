@@ -14,38 +14,6 @@ A simple, minimal password management application built with vanilla JavaScript.
 - **Auto-lock** - Vault locks after X minutes of inactivity
 - **Clipboard Clear** - Auto-clears copied data after X minutes
 
-## Design Patterns
-
-| Pattern | Purpose | File |
-|---------|---------|------|
-| Singleton | Session management | `js/patterns/Singleton.js` |
-| Builder | Password generation | `js/patterns/Builder.js` |
-| Observer | Expiration notifications | `js/patterns/Observer.js` |
-| Proxy | Data masking | `js/patterns/Proxy.js` |
-| Chain of Responsibility | Password recovery | `js/patterns/ChainOfResponsibility.js` |
-| Mediator | UI event handling | `js/patterns/Mediator.js` |
-
-## Project Structure
-
-```
-password-manager/
-├── index.html
-├── css/styles.css
-└── js/
-    ├── app.js
-    ├── database.js          (IndexedDB local storage)
-    ├── models/
-    │   ├── VaultItem.js
-    │   └── VaultManager.js
-    └── patterns/
-        ├── Singleton.js
-        ├── Builder.js
-        ├── Observer.js
-        ├── Proxy.js
-        ├── ChainOfResponsibility.js
-        └── Mediator.js
-```
-
 ## Running
 
 ```bash
