@@ -1,16 +1,47 @@
 /**
  * Singleton Pattern - Session Manager
  * Manages user authentication state and session securely
+ * 
+ * Pattern Structure:
+ * - Singleton (abstract): Declares instance and getInstance()
+ * - SessionManager (Concrete Singleton): Implements session management
+ * - Database: Used for persistence
  */
 
 import database from '../database.js';
 
-class SessionManager {
+/**
+ * Singleton - Abstract base class
+ * Ensures only one instance exists
+ */
+class Singleton {
     constructor() {
+        if (this.constructor === Singleton) {
+            throw new Error('Abstract class Singleton cannot be instantiated directly');
+        }
+    }
+
+    static getInstance() {
+        throw new Error('Method getInstance() must be implemented');
+    }
+}
+
+/**
+ * Concrete Singleton - SessionManager
+ * Manages user authentication, auto-lock, and clipboard
+ */
+class SessionManager extends Singleton {
+    // Static instance reference
+    static instance = null;
+
+    constructor() {
+        super();
+        
         if (SessionManager.instance) {
             return SessionManager.instance;
         }
         
+        // Instance properties
         this.user = null;
         this.isAuthenticated = false;
         this.lastActivity = Date.now();
@@ -22,6 +53,9 @@ class SessionManager {
         SessionManager.instance = this;
     }
 
+    /**
+     * getInstance - Returns the singleton instance
+     */
     static getInstance() {
         if (!SessionManager.instance) {
             SessionManager.instance = new SessionManager();
@@ -242,5 +276,7 @@ class SessionManager {
     }
 }
 
+// Export singleton instance
 const sessionManager = SessionManager.getInstance();
 export default sessionManager;
+export { Singleton, SessionManager };
